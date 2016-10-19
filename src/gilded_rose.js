@@ -20,8 +20,7 @@ function checkItem(item) {
       brieUpdate(item);
       break;
     case "Sulfuras, Hand of Ragnaros":
-      sulfurasUpdate(item);
-      break;
+      return item;
     case 'Backstage passes to a TAFKAL80ETC concert':
       backstageUpdate(item);
       break;
@@ -44,17 +43,11 @@ function normalUpdate(item) {
 }
 
 function conjuredUpdate(item) {
-  if (item.quality > 0 && item.quality < 50) {
-    item.quality -= 2;
-  }
+  if (item.quality > 0 && item.quality < 50) item.quality -= 2;
 }
 
 function brieUpdate(item) {
-  if (item.quality < 50) {
-    item.quality += 1;
-  } else {
-    item.quality = 50;
-  }
+  (item.quality < 50) ? item.quality += 1 : item.quality = 50;
 }
 
 function backstageUpdate(item) {
@@ -67,8 +60,4 @@ function backstageUpdate(item) {
   } else {
     item.quality = 0;
   }
-}
-
-function sulfurasUpdate(item) {
-  item.quality = item.quality;
 }
