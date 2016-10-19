@@ -45,6 +45,22 @@ describe("Gilded Rose update_quality", function() {
     it("5 days should increase quality by 5", function() {
       expect(items[0].quality).toEqual(25);
     });
+
   });
+
+  describe("Very old brie ...", function() {
+
+    beforeEach(function(){
+      items = [ agedBrie ];
+      for (var i = 0; i < 35; i++) {
+        update_quality();
+      }
+    });
+
+    it("should be not allowed to have quality above 50", function() {
+      expect(items[0].quality).toEqual(50);
+    });
+  });
+
 
 });
