@@ -37,8 +37,6 @@ function normalUpdate(item) {
     item.quality -= 1;
   } else if (item.quality > 0 && item.sell_in < 1) {
     item.quality -= 2;
-  } else {
-    item.quality = 0;
   }
 }
 
