@@ -121,21 +121,4 @@ describe("GildedRose", function() {
     });
   });
 
-  // describe("Check item ...", function () {
-  //
-  //   spyOn(update_quality, 'checkItem').and.callThrough();
-  //
-  //   beforeEach(function() {
-  //       items = [ bread, agedBrie ];
-  //       first_check = checkItem(item[0]);
-  //       second_check = checkItem(item[1]);
-  //   });
-  //
-  //   it('should detect "normal" item for bread and "brie" for "Aged Brie"', function() {
-  //     expect(first_check).toEqual("regular");
-  //     expect(second_check).toEqual("agedBrie");
-  //   });
-  //
-  // });
-
 });
