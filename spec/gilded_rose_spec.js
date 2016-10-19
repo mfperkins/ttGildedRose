@@ -4,6 +4,7 @@ describe("Gilded Rose update_quality", function() {
   var oldBread = new Item("bread", 0, 4);
   var agedBrie = new Item("Aged Brie", 10, 20);
   var sulfuras = new Item("Sulfuras, Hand of Ragnaros", 10, 10);
+  var backstage = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10);
 
   describe("Normal bread ...", function (){
 
@@ -18,16 +19,16 @@ describe("Gilded Rose update_quality", function() {
 
   describe("Old bread ...", function (){
 
-    it("should reduce quality by 2", function() {
+    beforeEach(function() {
       items = [ oldBread ];
       update_quality();
+    });
+
+    it("should reduce quality by 2", function() {
       expect(items[0].quality).toEqual(2);
     });
 
     it("should not let quality drop below 0", function() {
-      items = [ oldBread ];
-      update_quality();
-      update_quality();
       update_quality();
       expect(items[0].quality).toEqual(0);
     });
@@ -70,6 +71,41 @@ describe("Gilded Rose update_quality", function() {
       update_quality();
       expect(items[0].quality).toEqual(10);
     });
+  });
+
+  describe("Backstage ...", function() {
+
+    beforeEach(function(){
+      items = [ backstage ];
+      update_quality();
+    });
+
+    it("quality should +1 if sell_in > 10 days", function() {
+      expect(items[0].quality).toEqual(11);
+    });
+
+    it("quality should +2 if sell_in < 10 days", function() {
+      update_quality();
+      update_quality();
+      expect(items[0].quality).toEqual(17);
+    });
+
+    it("quality should +3 if sell_in < 5 days", function() {
+      update_quality();
+      update_quality();
+      update_quality();
+      update_quality();
+      expect(items[0].quality).toEqual(30);
+    });
+
+    it("quality should = 0 if sell_in < 0 days", function() {
+      update_quality();
+      update_quality();
+      console.log(items[0].sell_in);
+      expect(items[0].quality).toEqual(0);
+    });
+
+
   });
 
 
