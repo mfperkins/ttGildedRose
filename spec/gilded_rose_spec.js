@@ -3,6 +3,7 @@ describe("Gilded Rose update_quality", function() {
   var bread = new Item("bread", 10, 10);
   var oldBread = new Item("bread", 0, 4);
   var agedBrie = new Item("Aged Brie", 10, 20);
+  var sulfuras = new Item("Sulfuras, Hand of Ragnaros", 10, 10);
 
   describe("Normal bread ...", function (){
 
@@ -59,6 +60,15 @@ describe("Gilded Rose update_quality", function() {
 
     it("should be not allowed to have quality above 50", function() {
       expect(items[0].quality).toEqual(50);
+    });
+  });
+
+  describe("Sulfuras ...", function() {
+
+    it("quality should not change", function() {
+      items = [ sulfuras ];
+      update_quality();
+      expect(items[0].quality).toEqual(10);
     });
   });
 
